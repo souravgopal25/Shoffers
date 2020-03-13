@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Hipsters</string>
+    <string name="Email">Email</string>
+    <string name="pass">Password</string>
+    <string name="cpass">Confirm Password</string>
+    <string name="login">LOGIN</string>
+    <string name="signup">SIGNUP</string>
+    <string name="name">Name</string>
+    <string name="Mobile">Mobile</string>
+    <string name="add">Address</string>
+    <string name="State">State</string>
+
+
+
+</resources>
