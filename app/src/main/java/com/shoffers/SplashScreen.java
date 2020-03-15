@@ -19,6 +19,7 @@ public class SplashScreen extends AppCompatActivity {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        startActivity(new Intent(this,MainActivity.class));
+        startActivity(new Intent(this,Login.class));
+        finish();
     }
 }
