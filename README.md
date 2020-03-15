@@ -1,2 +1,2 @@
 # Shoffers
-Splash Screen
+An Android based shopping App
