@@ -2,10 +2,15 @@ package com.shoffers;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.database.sqlite.SQLiteStatement;
 
 import androidx.annotation.Nullable;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     //DATABASE NAME
@@ -47,6 +52,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
 
     }
+    //FUNCTION TO SIGNUP
     public Boolean signup(UserProfile user){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues=new ContentValues();
@@ -62,6 +68,56 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }else {
             return true;
         }
-        //TODO add your table and things respectively
+
     }
+    //TO GET DATA
+    public Cursor getData(){
+        SQLiteDatabase db=this.getWritableDatabase();
+        Cursor res=db.rawQuery("SELECT * from "+TABLE_PROFILE,null);
+        return res;
+    }
+
+    //FUNCTION FOR LOGIN
+    public boolean login(String email, String password) {
+      // array of columns to fetch
+        String[] columns = {EMAIL};
+        SQLiteDatabase db = this.getReadableDatabase();
+        // selection criteria
+        String selection = EMAIL + " = ?" + " AND " + PASSWORD + " = ?";
+        // selection arguments
+        String[] selectionArgs = {email, password};
+        Cursor cursor = db.query(TABLE_PROFILE, columns,selection, selectionArgs,null, null, null);
+        int cursorCount = cursor.getCount();
+        cursor.close();
+        db.close();
+        if (cursorCount > 0) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public boolean checkUser(String email) {
+        // array of columns to fetch
+        String[] columns = {EMAIL};
+        SQLiteDatabase db = this.getReadableDatabase();
+        // selection criteria
+        String selection = EMAIL + " = ?";
+        // selection argument
+        String[] selectionArgs = {email};
+        Cursor cursor = db.query(TABLE_PROFILE, columns,selection, selectionArgs,null, null, null);
+        int cursorCount = cursor.getCount();
+        cursor.close();
+        db.close();
+
+        if (cursorCount > 0) {
+            return true;
+        }
+
+        return false;
+    }
+
+
+
+
 }

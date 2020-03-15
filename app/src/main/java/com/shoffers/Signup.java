@@ -2,6 +2,7 @@ package com.shoffers;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -69,15 +70,21 @@ public class Signup extends AppCompatActivity {
             Toast.makeText(this, "PASSWORD Does not matches", Toast.LENGTH_SHORT).show();
             return;
         }
-        user=new UserProfile(mName,mMobile,mEmail,mPass,mAddr,mState);
-       if(db.signup(user)){
-           //TODO SUCCESSFULL
-           Toast.makeText(this, "SUCEESS", Toast.LENGTH_SHORT).show();
-       }
-       else {
-           //TODO UNSUCESSFULL
-           Toast.makeText(this, "FAILED", Toast.LENGTH_SHORT).show();
-       }
+        if (db.checkUser(mEmail)){
+            Toast.makeText(this, "EMAIL ALREADY EXISTS", Toast.LENGTH_SHORT).show();
+            return;
+        }
+            user = new UserProfile(mName, mMobile, mEmail, mPass, mAddr, mState);
+            if (db.signup(user)) {
+                //TODO SUCCESSFULL
+                Toast.makeText(this, "SUCEESS", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this,Login.class));
+            } else {
+                //TODO UNSUCESSFULl
+                Toast.makeText(this, "UNEXPECTED ERROR OCCURED", Toast.LENGTH_SHORT).show();
+            }
+
+
 
     }
 }
