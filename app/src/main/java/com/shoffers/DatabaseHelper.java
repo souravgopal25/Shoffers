@@ -18,6 +18,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     //TABLE NAME
     private static final String TABLE_PROFILE = "PROFILE";
+    private static final String ITEM = "ITEM";
 
     //COLOUMN NAME OF TABLE 1
     private static final String KEY_ID="ID";
@@ -29,10 +30,29 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String STATE="STATE";
 
 
+
+
+    //COLUMN NAME OF TABLE 2
+    private static final String KEY_ID1="ID";
+    private static final String ITEM_NAME="ITEM_NAME";
+    private static final String PRICE="PRICE";
+    private static final String SEX="SEX";
+    private static final String CATEGORY="CATEGORY";
+    private static final String SUB_CATEGORY="SUB_CATEGORY";
+
+
+
+
     // Table Create Statements
     private static final String CREATE_TABLE_PROFILE="CREATE TABLE "+ TABLE_PROFILE + " ("+
             " KEY_ID"+" INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,"+ NAME+" TEXT,"+ MOBILE +" TEXT, "+
             EMAIL +" TEXT UNIQUE,"+ PASSWORD+" TEXT,"+ ADDRESS+" TEXT,"+STATE+" TEXT)";
+
+    private static final String CREATE_TABLE_ITEM="CREATE TABLE "+TABLE_PROFILE+" ("+" KEY_ID1"+" INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,"+ITEM_NAME+" TEXT,"+
+            PRICE+" INTEGER,"+SEX+" INTEGER," +
+            "\t\"CATEGORY\"\tTEXT,\n" +
+            "\t\"SUB_CATEGORY\"\tTEXT\n" +
+            ")"
 
 
     public DatabaseHelper(@Nullable Context context) {

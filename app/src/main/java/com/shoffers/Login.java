@@ -25,7 +25,7 @@ public class Login extends AppCompatActivity {
         String mEmail=email.getText().toString();
         String mPass=pass.getText().toString();
         if(db.login(mEmail,mPass)){
-            startActivity(new Intent(this,MainActivity.class));
+            startActivity(new Intent(this,navdrawer.class));
 
         }else {
             Toast.makeText(this, "INVALID CREDENTIALS", Toast.LENGTH_SHORT).show();
